@@ -1,4 +1,5 @@
-import { Button, Input } from '@openware/components';
+import { Input } from '@openware/components';
+import { Button } from 'react-bootstrap';
 import { History } from 'history';
 import * as React from 'react';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
@@ -169,10 +170,14 @@ class ToggleTwoFactorAuthComponent extends React.Component<Props, State> {
                 <div className="row p-5">
                     <div className="col-12 m-0">
                         <Button
-                            className="p-3 m-0"
-                            label={this.translate('page.body.profile.header.account.content.twoFactorAuthentication.enable')}
                             onClick={submitHandler}
-                        />
+                            size="lg"
+                            variant="primary"
+                            type="button"
+                            block={true}
+                        >
+                            {this.translate('page.body.profile.header.account.content.twoFactorAuthentication.enable')}
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -186,12 +191,17 @@ class ToggleTwoFactorAuthComponent extends React.Component<Props, State> {
 
     private renderSecret = (secret: string) => {
         return (
-            <fieldset onClick={this.doCopy}>
-                <legend>
-                    {this.translate('page.body.profile.header.account.content.twoFactorAuthentication.message.mfa')}
-                </legend>
-                {secret && <CopyableTextField value={secret} fieldId="secret-2fa" />}
-            </fieldset>
+            <div className="pg-profile-two-factor-auth__copyablefield__container">
+                <legend>{this.translate('page.body.profile.header.account.content.twoFactorAuthentication.message.mfa')}</legend>
+                <fieldset onClick={this.doCopy}>
+                    {secret && <CopyableTextField
+                        value={secret}
+                        fieldId="secret-2fa"
+                        label=""
+                    />
+                    }
+                </fieldset>
+            </div>
         );
     };
 

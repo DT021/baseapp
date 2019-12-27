@@ -1,4 +1,4 @@
-import { Loader } from '@openware/components';
+import { Spinner } from 'react-bootstrap';
 import * as React from 'react';
 import {
     FormattedMessage,
@@ -145,7 +145,7 @@ class OrderInsert extends React.PureComponent<Props, StoreProps> {
                     width={this.state.width}
                     listenInputPrice={this.listenInputPrice}
                 />
-                {executeLoading && <Loader />}
+                {executeLoading && <div className="pg-order--loading"><Spinner animation="border" variant="primary" /></div>}
             </div>
         );
     }
@@ -213,7 +213,8 @@ class OrderInsert extends React.PureComponent<Props, StoreProps> {
             orderAllowed = false;
         }
 
-        if (+available < (+amount * +price)) {
+        if ((+available < (+amount * +price) && order.side === 'buy') ||
+            (+available < +amount && order.side === 'sell')) {
             this.props.pushAlert({
                 message: [this.props.intl.formatMessage(
                     { id: 'error.order.create.available' },

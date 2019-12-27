@@ -95,7 +95,6 @@ export class SignInComponent extends React.Component<SignInProps> {
                                 inputValue={email}
                                 handleFocusInput={() => this.handleFieldFocus('email')}
                                 classNameLabel="cr-sign-in-form__label"
-                                classNameInput="cr-sign-in-form__input"
                                 autoFocus={true}
                             />
                             {emailError && <div className={'cr-sign-in-form__error'}>{emailError}</div>}
@@ -110,7 +109,6 @@ export class SignInComponent extends React.Component<SignInProps> {
                                 inputValue={password}
                                 handleFocusInput={() => this.handleFieldFocus('password')}
                                 classNameLabel="cr-sign-in-form__label"
-                                classNameInput="cr-sign-in-form__input"
                                 autoFocus={false}
                             />
                             {passwordError && <div className={'cr-sign-in-form__error'}>{passwordError}</div>}
@@ -118,7 +116,7 @@ export class SignInComponent extends React.Component<SignInProps> {
                         <div className="cr-sign-in-form__button-wrapper">
                             <Button
                                 block={true}
-                                type="submit"
+                                type="button"
                                 disabled={isLoading || !email.match(EMAIL_REGEX) || !password}
                                 onClick={e => this.handleClick(e)}
                                 size="lg"

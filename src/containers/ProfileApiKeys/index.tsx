@@ -1,11 +1,10 @@
-import { Checkbox, Table } from '@openware/components';
 import cr from 'classnames';
 import * as React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { InjectedIntlProps, injectIntl } from 'react-intl';
 import { connect, MapDispatchToPropsFunction } from 'react-redux';
 import { withRouter } from 'react-router';
-import { CopyableTextField, CustomInput } from '../../components';
+import { CopyableTextField, CustomInput, Table } from '../../components';
 import { localeDate } from '../../helpers/localeDate';
 
 import {
@@ -156,14 +155,16 @@ class ProfileApiKeysComponent extends React.Component<Props, ProfileApiKeysState
                     </div>
                 ),
                 (
-                    <div className="pg-profile-page__api-keys__state-checkbox">
-                        <Checkbox
-                            checked={item.state === 'active'}
-                            className={'pg-profile-page__switch'}
-                            onChange={() => this.handleToggleStateKeyClick(item)}
-                            label={''}
-                            slider={true}
-                        />
+                    <div className="pg-profile-page__api-keys__status">
+                        <Form>
+                            <Form.Check
+                                type="switch"
+                                id="apiKeyCheck"
+                                label=""
+                                onChange={this.handleToggleStateKeyClick(item)}
+                                checked={item.state === 'active'}
+                            />
+                        </Form>
                     </div>
                 )
                 ,
@@ -238,12 +239,12 @@ class ProfileApiKeysComponent extends React.Component<Props, ProfileApiKeysState
                     <div className="cr-success-create">
                         <div className="pg-copyable-text__section">
                             <fieldset onClick={() => this.handleCopy('access-key-id', 'access')}>
-                                <legend><span>{this.t('page.body.profile.apiKeys.modal.access_key')}</span></legend>
                                 <CopyableTextField
                                   className="pg-copyable-text-field__input"
                                   fieldId={'access-key-id'}
                                   value={this.props.modal.apiKey.kid}
                                   copyButtonText={this.t('page.body.profile.content.copyLink')}
+                                  label={this.t('page.body.profile.apiKeys.modal.access_key')}
                                 />
                             </fieldset>
                         </div>
@@ -258,12 +259,12 @@ class ProfileApiKeysComponent extends React.Component<Props, ProfileApiKeysState
                         </div>
                         <div className="pg-copyable-text__section">
                             <fieldset onClick={() => this.handleCopy('secret-key-id', 'secret')}>
-                                <legend><span>{this.t('page.body.profile.apiKeys.modal.secret_key')}</span></legend>
                                 <CopyableTextField
                                   className="pg-copyable-text-field__input"
                                   fieldId={'secret_key-id'}
                                   value={this.props.modal.apiKey.secret.data.value}
                                   copyButtonText={this.t('page.body.profile.content.copyLink')}
+                                  label={this.t('page.body.profile.apiKeys.modal.secret_key')}
                                 />
                             </fieldset>
                         </div>
@@ -402,7 +403,7 @@ class ProfileApiKeysComponent extends React.Component<Props, ProfileApiKeysState
         this.props.toggleApiKeys2FAModal(payload);
     };
 
-    private handleToggleStateKeyClick = apiKey => {
+    private handleToggleStateKeyClick = apiKey => () => {
         const payload: ApiKeys2FAModal['payload'] = {active: true, action: 'updateKey', apiKey};
         this.props.toggleApiKeys2FAModal(payload);
     };

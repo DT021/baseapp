@@ -1,4 +1,5 @@
-import { Decimal, Loader, Markets } from '@openware/components';
+import { Markets } from '@openware/components';
+import { Spinner } from 'react-bootstrap';
 import classnames from 'classnames';
 import * as React from 'react';
 import {
@@ -20,6 +21,7 @@ import {
 } from '../../modules/public/markets';
 import { depthFetch } from '../../modules/public/orderBook';
 import { walletsFetch } from '../../modules/user/wallets';
+import { Decimal } from '../../components/Decimal';
 
 interface ReduxProps {
     userData: User;
@@ -62,7 +64,7 @@ class MarketsContainer extends React.Component<Props> {
         });
         return (
             <div className={className}>
-                {marketsLoading ? <div><Loader /></div> : this.markets()}
+                {marketsLoading ? <div><Spinner animation="border" variant="primary" /></div> : this.markets()}
             </div>
         );
     }

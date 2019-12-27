@@ -1,11 +1,12 @@
-import { Decimal, Loader, Pagination } from '@openware/components';
+import { Spinner } from 'react-bootstrap';
 import * as React from 'react';
 import {
     InjectedIntlProps,
     injectIntl,
 } from 'react-intl';
 import {connect, MapDispatchToPropsFunction} from 'react-redux';
-import { History } from '../../components';
+import { Decimal } from '../../components/Decimal';
+import { History, Pagination } from '../../components';
 import {
     localeDate,
     preciseData,
@@ -82,7 +83,7 @@ class HistoryComponent extends React.Component<Props> {
         const { list, fetching } = this.props;
         return (
           <div className={`pg-history-elem ${list.length ? '' : 'pg-history-elem-empty'}`}>
-              {fetching && <Loader />}
+              {fetching && <div className="text-center"><Spinner animation="border" variant="primary" /></div>}
               {list.length ? this.renderContent() : null}
               {!list.length && !fetching ? <p className="pg-history-elem__empty">{this.props.intl.formatMessage({id: 'page.noDataToShow'})}</p> : null}
           </div>

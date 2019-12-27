@@ -155,6 +155,10 @@ export const ru: LangType = {
     'page.body.wallets.beneficiaries.tipName': 'Name',
     'page.body.wallets.beneficiaries.tipDescription': 'Note',
 
+    'page.body.wallets.beneficiaries.failAddModal.header': 'Warning',
+    'page.body.wallets.beneficiaries.failAddModal.content': 'You need to confirm your account to add a beneficiary',
+    'page.body.wallets.beneficiaries.failAddModal.button': 'Confirm phone',
+
     'page.body.openOrders.tab.all': 'Все',
     'page.body.openOrders.tab.open': 'Открытые',
     'page.body.openOrders.header.orderType': 'Тип ордера',
@@ -403,6 +407,9 @@ export const ru: LangType = {
     'page.modal.withdraw.success.message.content': 'Ваш вывод был успешно подтвержден. Пожалуйста, подождите, чтобы получить ' +
                                                    'несколько обязательных подтверждений для завершения этой транзакции.',
     'page.modal.withdraw.success.button': 'OK',
+
+    'page.modal.expired.title': 'Ваша сессия истекла',
+    'page.modal.expired.submit': 'Обновить сессию',
 
     // success messages
     'success.documents.accepted': 'Ваши документы успешно приняты',
